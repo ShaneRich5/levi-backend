@@ -10,7 +10,7 @@ use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use Tymon\JWTAuth\Exceptions\JWTException;
 
-class RegistrationController extends Controller 
+class AuthController extends Controller 
 {
 
     /** @var Centaur\AuthManager */
