@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'Levi'),
 
     /*
     |--------------------------------------------------------------------------
@@ -169,6 +169,12 @@ return [
         Laravel\Tinker\TinkerServiceProvider::class,
 
         /*
+         * Library Service Providers...
+         */
+        Centaur\CentaurServiceProvider::class,
+        Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
+        
+        /*
          * Application Service Providers...
          */
         App\Providers\AppServiceProvider::class,
@@ -177,10 +183,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        /*
-         * Library Service Providers...x
-         */
-        Centaur\CentaurServiceProvider::class, 
+        Barryvdh\Cors\ServiceProvider::class,
 
     ],
 
@@ -230,6 +233,9 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+
+        'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class,
+        'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
 
     ],
 
