@@ -18,3 +18,18 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::post('/register', 'Api\AuthController@register');
+Route::post('/login', 'Api\AuthController@login');
+Route::get('/refresh', 'Api\AuthController@refresh');
+Route::get('/user', 'Api\AuthController@user');
+
+Route::resource('national-office', 'Api\NationalOffice');
+
+// Route::
+
+// group([
+//     'prefix' => 'api/v1',
+//     'namespace' => 'Api\v1',
+//     'middleware' => ['cors', 'jwt.refresh']
+// ], function ($app) {
+//     $app->get('/auth/refresh', 'AuthController@refresh');
+// });

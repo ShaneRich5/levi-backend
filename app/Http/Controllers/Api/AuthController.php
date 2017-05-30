@@ -59,14 +59,98 @@ class AuthController extends Controller
         try {
             // attempt to verify the credentials and create a token for the user
             if (! $token = JWTAuth::attempt($credentials)) {
-                return response()->json(['error' => 'invalid_credentials'], 401);
+                return response()->json([
+                    'status' => 'error',
+                    'error' => 'invalid_credentials',
+                    'message' => 'Invalid Credentials'
+                    ], 401);
             }
         } catch (JWTException $e) {
             // something went wrong whilst attempting to encode the token
-            return response()->json(['error' => 'could_not_create_token'], 500);
+            return response()->json([
+                    'status' => 'error',
+                    'error' => 'invalid_credentials',
+                    'message' => 'Invalid Credentials'
+                    ], 401);
         }
 
         // all good so return the token
         return response()->json(compact('token'));
+    }
+
+    public function login(Request $request)
+    {
+        // Validate the form data
+        $validator = Validator::make($request->all(), [
+            'email' => 'required|email|max:255',
+            'password' => 'required|min:6',
+        ]);
+
+        $credentials = $request->only('email', 'password');
+
+        try {
+            // attempt to verify the credentials and create a token for the user
+            if (! $token = JWTAuth::attempt($credentials)) {
+        
+                return response()->json([
+                    'status' => 'error',
+                    'error' => 'invalid_credentials',
+                    'message' => 'Invalid Credentials'
+                    ], 401);
+            }
+        } catch (JWTException $e) {
+            // something went wrong whilst attempting to encode the token
+            return response()->json([
+                'status' => 'error',
+                'error' => 'could_not_create_token',
+                'message' => 'Unable to create token'], 500);
+        }
+
+        // all good so return the token
+        return response()->json([
+            'token' => $token,
+            'user' => JWTAuth::toUser($token)
+        ]);
+        // return response([
+        //     'status' => 'success'
+        // ])
+        // ->header('Authorization', $token);
+    }
+
+    public function refresh()
+    {
+        return response([
+            'status' => 'success'
+        ]);
+    }
+
+    public function user(Request $request)
+    {
+        try {
+
+            if (! $user = JWTAuth::parseToken()->authenticate()) {
+                return response()->json(['user_not_found'], 404);
+            }
+
+        } catch (Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+
+            return response()->json([
+                'status' => 'error',
+                'error' => 'token_expired',
+                'message' => 'Login again'
+                ], $e->getStatusCode());
+
+        } catch (Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
+
+            return response()->json(['token_invalid'], $e->getStatusCode());
+
+        } catch (Tymon\JWTAuth\Exceptions\JWTException $e) {
+
+            return response()->json(['token_absent'], $e->getStatusCode());
+
+        }
+
+        // the token is valid and we have found the user via the sub claim
+        return response()->json(compact('user'));
     }
 }
