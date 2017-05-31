@@ -22,7 +22,9 @@ Route::post('/login', 'Api\AuthController@login');
 Route::get('/refresh', 'Api\AuthController@refresh');
 Route::get('/user', 'Api\AuthController@user');
 
-Route::resource('national-office', 'Api\NationalOffice');
+Route::resource('national-offices', 'Api\NationalOfficeController');
+Route::resource('district-offices', 'Api\DistrictOfficeController');
+Route::resource('churches', 'Api\ChurchController');
 
 // Route::
 

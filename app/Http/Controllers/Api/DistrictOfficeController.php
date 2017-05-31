@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\DistrictOffice;
 use Illuminate\Http\Request;
-use App\Models\NationalOffice;
 use App\Http\Controllers\Controller;
 
-class NationalOfficeController extends Controller
+class DistrictOfficeController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,9 +15,9 @@ class NationalOfficeController extends Controller
      */
     public function index()
     {
-        $nationalOffices = NationalOffice::all();
+        $districtOffices = DistrictOffice::all();
         return response()->json([
-            'nationalOffices' => $nationalOffices
+            'districtOffices' => $districtOffices
         ]);
     }
 
@@ -45,21 +45,21 @@ class NationalOfficeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\NationalOffice  $nationalOffice
+     * @param  \App\DistrictOffice  $districtOffice
      * @return \Illuminate\Http\Response
      */
-    public function show(NationalOffice $nationalOffice)
+    public function show(DistrictOffice $districtOffice)
     {
-        return response()->json($nationalOffice);
+        return response()->json($districtOffice);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\NationalOffice  $nationalOffice
+     * @param  \App\DistrictOffice  $districtOffice
      * @return \Illuminate\Http\Response
      */
-    public function edit(NationalOffice $nationalOffice)
+    public function edit(DistrictOffice $districtOffice)
     {
         //
     }
@@ -68,10 +68,10 @@ class NationalOfficeController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\NationalOffice  $nationalOffice
+     * @param  \App\DistrictOffice  $districtOffice
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, NationalOffice $nationalOffice)
+    public function update(Request $request, DistrictOffice $districtOffice)
     {
         //
     }
@@ -79,10 +79,10 @@ class NationalOfficeController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\NationalOffice  $nationalOffice
+     * @param  \App\DistrictOffice  $districtOffice
      * @return \Illuminate\Http\Response
      */
-    public function destroy(NationalOffice $nationalOffice)
+    public function destroy(DistrictOffice $districtOffice)
     {
         //
     }
