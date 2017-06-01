@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\Expense;
+use App\Models\Expense;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Models\DistrictReport;
 
 class ExpenseController extends Controller
 {
@@ -14,7 +16,12 @@ class ExpenseController extends Controller
      */
     public function index()
     {
-        //
+        $report = DistrictReport::find($reportId);
+        $expenses = $report->expenses()->get();
+
+        return response()->json([
+            'expenses' => $expenses
+        ]);
     }
 
     /**
@@ -33,9 +40,21 @@ class ExpenseController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, $reportId)
     {
-        //
+        $report = DistrictReport::find($reportId);
+        
+        $expense = new Expense;
+        
+        $expense->name = $request->input('name');
+        $expense->amount = 0;
+        $expense->district_report_id = $report->id;
+        $expense->save();
+
+        return response()->json([
+            'status' => 'succes',
+            'expense' => $expense 
+        ]);
     }
 
     /**
@@ -67,9 +86,17 @@ class ExpenseController extends Controller
      * @param  \App\Expense  $expense
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Expense $expense)
+    public function update(Request $request, $id)
     {
-        //
+        $expense = Expense::find($id);
+        $expense->name = $request->input('name');
+        $expense->amount = $request->input('amount');
+        $expense->save();
+
+        return response()->json([
+            'status' => 'success',
+            'expense' => $expense
+        ]);
     }
 
     /**

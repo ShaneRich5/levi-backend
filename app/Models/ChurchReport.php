@@ -22,4 +22,8 @@ class ChurchReport extends Model
     public function sources() {
         return $this->hasMany('\App\Models\Source');
     }
+
+    public function total() {
+        return $this->sources()->sum('amount') / 100;
+    }
 }

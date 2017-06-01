@@ -1,12 +1,20 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\ChurchReport;
+use App\Models\ChurchReport;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class ChurchReportController extends Controller
 {
+    public function total($id)
+    {
+        $report = ChurchReport::find($id);
+        return response()->json($report->total());
+        // return response()->json($report->sources()->get());
+    }
+
     /**
      * Display a listing of the resource.
      *

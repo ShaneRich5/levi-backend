@@ -26,11 +26,19 @@ Route::resource('national-offices', 'Api\NationalOfficeController');
 Route::resource('district-offices', 'Api\DistrictOfficeController');
 Route::resource('churches', 'Api\ChurchController');
 
+Route::get('district-offices/{id}/reports', 'Api\DistrictOfficeController@reports');
+
 Route::get('churches/{id}/reports', 'Api\ChurchController@reports');
 Route::post('church-reports/{reportId}/sources', 'Api\SourceController@store');
 Route::get('church-reports/{reportId}/sources', 'Api\SourceController@index');
 
+Route::post('district-reports/{reportId}/expenses', 'Api\ExpenseController@store');
+
 Route::post('sources/{id}', 'Api\SourceController@update');
+Route::post('expenses/{id}', 'Api\ExpenseController@update');
+
+Route::get('church-reports/{id}/total', 'Api\ChurchReportController@total');
+Route::get('journal', 'Api\NationalOfficeController@journals');
 
 // Route::
 
