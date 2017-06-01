@@ -37,6 +37,9 @@ Route::post('district-reports/{reportId}/expenses', 'Api\ExpenseController@store
 Route::post('sources/{id}', 'Api\SourceController@update');
 Route::post('expenses/{id}', 'Api\ExpenseController@update');
 
+Route::get('sources', 'Api\SourceController@all');
+Route::get('expenses', 'Api\ExpenseController@all');
+
 Route::get('church-reports/{id}/total', 'Api\ChurchReportController@total');
 Route::get('journal', 'Api\NationalOfficeController@journals');
 

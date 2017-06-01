@@ -18,26 +18,24 @@ class OfficeSeeder extends Seeder
 
 		//disable foreign key check for this connection before running seeders
 		
-        // DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         
-        // DB::table('churches')->truncate();
-        // DB::table('district_offices')->truncate();
-        // DB::table('national_offices')->truncate();
+        DB::table('churches')->truncate();
+        DB::table('district_offices')->truncate();
+        DB::table('national_offices')->truncate();
         
-        // DB::table('church_reports')->truncate();
-        // DB::table('district_reports')->truncate();
-        // DB::table('journals')->truncate();
+        DB::table('church_reports')->truncate();
+        DB::table('district_reports')->truncate();
+        DB::table('journals')->truncate();
         
-		// supposed to only apply to a single connection and reset it's self
-		// but I like to explicitly undo what I've done for clarity
-		// DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+		DB::statement('SET FOREIGN_KEY_CHECKS=1;');
         
-        $nationalOffice = NationalOffice::create(['name' => 'Baptist Union National Office']);
+        $nationalOffice = NationalOffice::create(['name' => 'Island Office']);
     
         $districtOffice = $nationalOffice->districtOffices()->create(['name' => 'National Testament Church of God']);
 
         $newTestamentChurch = $districtOffice->churches()->create(['name' => 'National Testament Church of God']);
-        $bethelBaptistChurch = $districtOffice->churches()->create(['name' => 'Bethel Baptist Church']);
+        $bethelBaptistChurch = $districtOffice->churches()->create(['name' => 'ChurchB']);
 
         $journal = $nationalOffice->journals()->create(['title' => 'Journal Voucher']);
 

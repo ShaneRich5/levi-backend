@@ -9,6 +9,11 @@ use App\Models\DistrictReport;
 
 class ExpenseController extends Controller
 {
+
+    public function all() {
+        return response()->json(['expenses' => Expense::all()]);
+    }
+
     /**
      * Display a listing of the resource.
      *

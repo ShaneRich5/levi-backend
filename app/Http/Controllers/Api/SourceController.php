@@ -10,6 +10,9 @@ use App\Http\Controllers\Controller;
 
 class SourceController extends Controller
 {
+    public function all() {
+        return response()->json(['sources' => Source::all()]);
+    }
     /**
      * Display a listing of the resource.
      *

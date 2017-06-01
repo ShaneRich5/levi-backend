@@ -16,6 +16,7 @@ class CreateDistrictReportsTable extends Migration
         Schema::create('district_reports', function (Blueprint $table) {
             $table->increments('id');
             $table->string('title');
+            $table->integer('opening_fund')->default(0);
 
             $table->integer('journal_id')
                 ->unsigned()->nullable();
