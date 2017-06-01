@@ -31,6 +31,16 @@ class CreateSourcesTable extends Migration
      */
     public function down()
     {
+        try {
+            DB::statement('SET FOREIGN_KEY_CHECKS = 0');
+        } catch (\Exception $e) {
+
+        }
         Schema::dropIfExists('sources');
+        try {
+            DB::statement('SET FOREIGN_KEY_CHECKS = 1');
+        } catch (\Exception $e) {
+
+        }
     }
 }
