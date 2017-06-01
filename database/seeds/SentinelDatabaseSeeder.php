@@ -60,6 +60,24 @@ class SentinelDatabaseSeeder extends Seeder
             'permissions' => array()
         ));
 
+        $natialRole = Sentinel::getRoleRepository()->create(array(
+            'name' => 'National',
+            'slug' => 'national-office',
+            'permissions' => array()
+        ));
+
+        $districtRole = Sentinel::getRoleRepository()->create(array(
+            'name' => 'National',
+            'slug' => 'district-office',
+            'permissions' => array()
+        ));
+
+        $churchRole = Sentinel::getRoleRepository()->create(array(
+            'name' => 'Church',
+            'slug' => 'church',
+            'permissions' => array()
+        ));
+
         // Assign Roles to Users
         $administratorRole->users()->attach($admin);
         $subscriberRole->users()->attach($user);

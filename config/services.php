@@ -35,4 +35,12 @@ return [
         'secret' => env('STRIPE_SECRET'),
     ],
 
+    'firebase' => [
+        'api_key' => 'AIzaSyAL8ZOrV59wqYvJe4xSQXED3NiGxKW8FZ8', // Only used for JS integration
+        'auth_domain' => 'levi-99180.firebaseapp.com', // Only used for JS integration
+        'database_url' => 'https://levi-99180.firebaseio.com',
+        'secret' => 'TAHWV2Z5QKvJEqzetUFqZ6fllpxV5dY32WaaLEiY',
+        'storage_bucket' => 'levi-99180.appspot.com', // Only used for JS integration
+    ]
+
 ];

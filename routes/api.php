@@ -26,6 +26,12 @@ Route::resource('national-offices', 'Api\NationalOfficeController');
 Route::resource('district-offices', 'Api\DistrictOfficeController');
 Route::resource('churches', 'Api\ChurchController');
 
+Route::get('churches/{id}/reports', 'Api\ChurchController@reports');
+Route::post('church-reports/{reportId}/sources', 'Api\SourceController@store');
+Route::get('church-reports/{reportId}/sources', 'Api\SourceController@index');
+
+Route::post('sources/{id}', 'Api\SourceController@update');
+
 // Route::
 
 // group([

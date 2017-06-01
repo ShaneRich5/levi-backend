@@ -3,16 +3,15 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Mpociot\Firebase\SyncsWithFirebase;
 
-class DistrictOffice extends Model
+class Journal extends Model
 {
+    use SyncsWithFirebase;
+    
     protected $fillable = [
-        'name'
+        'title'
     ];
-
-    public function churches() {
-        return $this->hasMany('\App\Models\Church');
-    }
 
     public function nationalOffice() {
         return $this->belongsTo('App\Models\NationalOffice');
