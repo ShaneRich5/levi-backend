@@ -20,13 +20,13 @@ class OfficeSeeder extends Seeder
 		
         // DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         
-        DB::table('churches')->truncate();
-        DB::table('district_offices')->truncate();
-        DB::table('national_offices')->truncate();
+        // DB::table('churches')->truncate();
+        // DB::table('district_offices')->truncate();
+        // DB::table('national_offices')->truncate();
         
-        DB::table('church_reports')->truncate();
-        DB::table('district_reports')->truncate();
-        DB::table('journals')->truncate();
+        // DB::table('church_reports')->truncate();
+        // DB::table('district_reports')->truncate();
+        // DB::table('journals')->truncate();
         
 		// supposed to only apply to a single connection and reset it's self
 		// but I like to explicitly undo what I've done for clarity
