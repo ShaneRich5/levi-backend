@@ -18,17 +18,17 @@ class OfficeSeeder extends Seeder
 
 		//disable foreign key check for this connection before running seeders
 		
-        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        // DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         
-        DB::table('churches')->truncate();
-        DB::table('district_offices')->truncate();
-        DB::table('national_offices')->truncate();
+        // DB::table('churches')->truncate();
+        // DB::table('district_offices')->truncate();
+        // DB::table('national_offices')->truncate();
         
-        DB::table('church_reports')->truncate();
-        DB::table('district_reports')->truncate();
-        DB::table('journals')->truncate();
+        // DB::table('church_reports')->truncate();
+        // DB::table('district_reports')->truncate();
+        // DB::table('journals')->truncate();
         
-		DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+		// DB::statement('SET FOREIGN_KEY_CHECKS=1;');
         
         $nationalOffice = NationalOffice::create(['name' => 'Island Office']);
     
