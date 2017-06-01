@@ -17,15 +17,13 @@ class CreateChurchReportsTable extends Migration
             $table->increments('id');
             $table->string('title');
             
-            $table->integer('district_report_id')
-                ->unsigned()->nullable();
-            $table->foreign('district_report_id')
-                ->references('id')->on('district_reports');
+            $table->integer('district_report_id')->unsigned()->nullable();
+            $table->foreign('district_report_id')->references('id')
+                ->on('district_reports')->onDelete('cascade');
 
-            $table->integer('church_id')
-                ->unsigned()->nullable();
-            $table->foreign('church_id')
-                ->references('id')->on('churches');
+            $table->integer('church_id')->unsigned()->nullable();
+            $table->foreign('church_id')->references('id')
+                ->on('churches')->onDelete('cascade');
 
             $table->timestamps();
         });
@@ -38,16 +36,8 @@ class CreateChurchReportsTable extends Migration
      */
     public function down()
     {
-        try {
-            DB::statement('SET FOREIGN_KEY_CHECKS = 0');
-        } catch (\Exception $e) {
-
-        }
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Schema::dropIfExists('church_reports');
-        try {
-            DB::statement('SET FOREIGN_KEY_CHECKS = 1');
-        } catch (\Exception $e) {
-
-        }
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

@@ -17,7 +17,8 @@ class CreateNationalOfficesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->integer('address_id')->unsigned()->nullable();
-            $table->foreign('address_id')->references('id')->on('addresses');
+            $table->foreign('address_id')->references('id')
+                ->on('addresses')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -29,16 +30,8 @@ class CreateNationalOfficesTable extends Migration
      */
     public function down()
     {
-        try{
-            DB::statement('SET FOREIGN_KEY_CHECKS = 0');
-        } catch (\Exception $e) {
-
-        }
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Schema::dropIfExists('national_offices');
-        try{
-            DB::statement('SET FOREIGN_KEY_CHECKS = 1');
-        } catch (\Exception $e) {
-
-        }
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

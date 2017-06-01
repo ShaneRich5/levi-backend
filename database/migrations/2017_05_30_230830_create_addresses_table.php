@@ -29,14 +29,9 @@ class CreateAddressesTable extends Migration
      */
     public function down()
     {
-        try{
-            DB::statement('SET FOREIGN_KEY_CHECKS = 0');
-        } catch (\Exception $e) {}
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Schema::dropIfExists('addresses');
-        try{
-            DB::statement('SET FOREIGN_KEY_CHECKS = 1');
-        } catch (\Exception $e) {
-
-        }
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
+        
     }
 }

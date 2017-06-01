@@ -18,8 +18,8 @@ class CreateJournalsTable extends Migration
             $table->string('title');
             $table->integer('national_office_id')
                 ->unsigned()->nullable();
-            $table->foreign('national_office_id')
-                ->references('id')->on('national_offices');
+            $table->foreign('national_office_id')->references('id')
+                ->on('national_offices')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -31,16 +31,8 @@ class CreateJournalsTable extends Migration
      */
     public function down()
     {
-        try {
-            DB::statement('SET FOREIGN_KEY_CHECKS = 0');
-        } catch (\Exception $e) {
-
-        }
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Schema::dropIfExists('journals');
-        try {
-            DB::statement('SET FOREIGN_KEY_CHECKS = 1');
-        } catch (\Exception $e) {
-
-        }
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

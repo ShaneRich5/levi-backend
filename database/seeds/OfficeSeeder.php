@@ -18,12 +18,8 @@ class OfficeSeeder extends Seeder
 
 		//disable foreign key check for this connection before running seeders
 		
-        try {
-            DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        } catch (\Exception $e) {
-
-        }
-			
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        
         DB::table('national_offices')->truncate();
         DB::table('district_offices')->truncate();
         DB::table('churches')->truncate();
@@ -34,11 +30,7 @@ class OfficeSeeder extends Seeder
 
 		// supposed to only apply to a single connection and reset it's self
 		// but I like to explicitly undo what I've done for clarity
-		try {
-            DB::statement('SET FOREIGN_KEY_CHECKS=1;');
-        } catch (\Exception $e) {
-
-        }
+		DB::statement('SET FOREIGN_KEY_CHECKS=1;');
         
         $nationalOffice = NationalOffice::create(['name' => 'Baptist Union National Office']);
     

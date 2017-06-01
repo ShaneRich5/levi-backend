@@ -19,7 +19,8 @@ class CreateExpensesTable extends Migration
             $table->integer('amount');
             $table->string('description')->nullable();
             $table->integer('district_report_id')->unsigned()->nullable();
-            $table->foreign('district_report_id')->references('id')->on('district_reports');
+            $table->foreign('district_report_id')->references('id')
+                ->on('district_reports')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -31,16 +32,8 @@ class CreateExpensesTable extends Migration
      */
     public function down()
     {
-        try {
-            DB::statement('SET FOREIGN_KEY_CHECKS = 0');
-        } catch (\Exception $e) {
-
-        }
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Schema::dropIfExists('expenses');
-        try {
-            DB::statement('SET FOREIGN_KEY_CHECKS = 1');
-        } catch (\Exception $e) {
-
-        }
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }

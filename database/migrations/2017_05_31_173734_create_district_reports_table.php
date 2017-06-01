@@ -19,13 +19,13 @@ class CreateDistrictReportsTable extends Migration
 
             $table->integer('journal_id')
                 ->unsigned()->nullable();
-            $table->foreign('journal_id')
-                ->references('id')->on('journals');
+            $table->foreign('journal_id')->references('id')
+                ->on('journals')->onDelete('cascade');
 
             $table->integer('district_office_id')
                 ->unsigned()->nullable();
-            $table->foreign('district_office_id')
-                ->references('id')->on('district_offices');
+            $table->foreign('district_office_id')->references('id')
+                ->on('district_offices')->onDelete('cascade');
 
             $table->timestamps();
         });
@@ -38,16 +38,8 @@ class CreateDistrictReportsTable extends Migration
      */
     public function down()
     {
-        try {
-            DB::statement('SET FOREIGN_KEY_CHECKS = 0');
-        } catch (\Exception $e) {
-
-        }
+        DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Schema::dropIfExists('district_reports');
-        try {
-            DB::statement('SET FOREIGN_KEY_CHECKS = 1');
-        } catch (\Exception $e) {
-
-        }
+        DB::statement('SET FOREIGN_KEY_CHECKS = 1');
     }
 }
