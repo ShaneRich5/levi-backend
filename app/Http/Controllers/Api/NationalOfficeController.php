@@ -73,6 +73,7 @@ class NationalOfficeController extends Controller
 
         $journal = Journal::first()->get()->toArray()[0];
         $journal['accounts'] = $data;
+        
 
         return response()->json([
             'journal' => $journal

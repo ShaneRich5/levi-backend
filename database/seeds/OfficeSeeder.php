@@ -53,16 +53,12 @@ class OfficeSeeder extends Seeder
         $churchReportBethel->church_id = $bethelBaptistChurch->id;
         $churchReportBethel->save();
 
-        $tithes = ['name' => 'Tithes', 'amount' => 50000];
-        $pension = ['name' => 'Rally', 'amount' => 2000];
-        $rally = ['name' => 'Pension', 'amount' => 20000];
+        $sources = ['Tithes', 'Rally', 'Pension', 'School', 'Mission'];
 
-        $churchReportTestament->sources()->create($tithes);
-        $churchReportTestament->sources()->create($pension);
-        $churchReportTestament->sources()->create($rally);
-
-        $churchReportBethel->sources()->create($tithes);
-        $churchReportBethel->sources()->create($pension);
-        $churchReportBethel->sources()->create($rally);
+        foreach ($sources as $source) {
+            $temp = ['name' => $source, 'amount' => 0];
+            $churchReportTestament->sources()->create($temp);
+            $churchReportBethel->sources()->create($temp);
+        }
     }
 }
