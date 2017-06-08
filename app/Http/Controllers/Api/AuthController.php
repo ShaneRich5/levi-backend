@@ -65,6 +65,14 @@ class AuthController extends Controller
                     'message' => 'Invalid Credentials'
                     ], 401);
             }
+        } catch (Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+
+            return response()->json([
+                'status' => 'error',
+                'error' => 'token_expired',
+                'message' => 'Login again'
+                ]);
+
         } catch (JWTException $e) {
             // something went wrong whilst attempting to encode the token
             return response()->json([
@@ -98,6 +106,14 @@ class AuthController extends Controller
                     'message' => 'Invalid Credentials'
                     ], 401);
             }
+        } catch (Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
+
+            return response()->json([
+                'status' => 'error',
+                'error' => 'token_expired',
+                'message' => 'Login again'
+                ]);
+
         } catch (JWTException $e) {
             // something went wrong whilst attempting to encode the token
             return response()->json([
@@ -138,7 +154,7 @@ class AuthController extends Controller
                 'status' => 'error',
                 'error' => 'token_expired',
                 'message' => 'Login again'
-                ], $e->getStatusCode());
+                ]);
 
         } catch (Tymon\JWTAuth\Exceptions\TokenInvalidException $e) {
 

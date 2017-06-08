@@ -55,7 +55,7 @@ class OfficeSeeder extends Seeder
         $sources = ['Tithes', 'Rally', 'Pension', 'School', 'Mission'];
 
         foreach ($sources as $source) {
-            $temp = ['name' => $source, 'amount' => 0];
+            $temp = ['name' => $source, 'amount' => 1000];
             $churchReportTestament->sources()->create($temp);
             $churchReportBethel->sources()->create($temp);
         }
