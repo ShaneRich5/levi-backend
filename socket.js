@@ -3,12 +3,14 @@ var io = require('socket.io')(server);
 var Redis = require('ioredis');
 var redis = new Redis();
 
-redis.subscribe('source-changed', function(err, count) {
+redis.subscribe('levi-notifications', function(err, count) {
 });
 
 redis.on('message', function(channel, message) {
     console.log('Message Recieved: ' + message);
+		// console.log('Channel: ' + channel);
     message = JSON.parse(message);
+		console.log(channel + ':' + message.event);
     io.emit(channel + ':' + message.event, message.data);
 });
 

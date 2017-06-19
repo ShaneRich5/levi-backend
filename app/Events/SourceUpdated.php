@@ -36,6 +36,6 @@ class SourceUpdated extends Event implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return ['source-changed'];
+        return ['levi-notifications'];
     }
 }
