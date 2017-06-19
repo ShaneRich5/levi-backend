@@ -15,17 +15,8 @@ class SourceController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        $sources = Source::all();
+        return response()->json(['sources' => $sources]);
     }
 
     /**
@@ -51,17 +42,6 @@ class SourceController extends Controller
     }
 
     /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Source  $source
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Source $source)
-    {
-        //
-    }
-
-    /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -70,7 +50,7 @@ class SourceController extends Controller
      */
     public function update(Request $request, Source $source)
     {
-        //
+
     }
 
     /**
