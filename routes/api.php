@@ -27,6 +27,9 @@ Route::get('organizations', 'Api\OrganizationController@index');
 Route::resource('national-offices', 'Api\NationalOfficeController', ['except' => ['create', 'edit']]);
 Route::resource('district-offices', 'Api\DistrictOfficeController', ['except' => ['create', 'edit']]);
 Route::resource('churches', 'Api\ChurchController', ['except' => ['create', 'edit']]);
+
+Route::resource('church-reports', 'Api\ChurchReportController', ['except' => ['create', 'edit']]);
+
 Route::resource('churches.church-reports', 'Api\ChurchChurchReportController', ['except' => ['create', 'edit']]);
 
 Route::get('district-offices/{id}/reports', 'Api\DistrictOfficeController@reports');

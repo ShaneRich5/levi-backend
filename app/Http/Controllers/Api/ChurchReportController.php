@@ -22,17 +22,7 @@ class ChurchReportController extends Controller
      */
     public function index()
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        return response()->json(['churchReports' => ChurchReport::all()]);
     }
 
     /**
@@ -54,18 +44,10 @@ class ChurchReportController extends Controller
      */
     public function show(ChurchReport $churchReport)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\ChurchReport  $churchReport
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(ChurchReport $churchReport)
-    {
-        //
+        return response()->json([
+            'churchReport' => $churchReport,
+            'sources' => $churchReport->sources()->get()
+        ]);
     }
 
     /**
