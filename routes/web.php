@@ -45,3 +45,9 @@ Route::get('dashboard', ['as' => 'dashboard', 'uses' => function() {
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('fire', function () {
+    // this fires the event
+    event(new App\Events\SourceUpdated());
+    return "event fired";
+});

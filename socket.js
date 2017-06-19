@@ -3,7 +3,7 @@ var io = require('socket.io')(server);
 var Redis = require('ioredis');
 var redis = new Redis();
 
-redis.subscribe('test-channel', function(err, count) {
+redis.subscribe('source-changed', function(err, count) {
 });
 
 redis.on('message', function(channel, message) {
