@@ -2,38 +2,34 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Models\ChurchReport;
 use App\Models\Church;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 
-class ChurchController extends Controller
+class ChurchChurchReportController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
+     * @param  \App\Models\Church  $church
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Church $church)
     {
-        $churches = Church::all();
         return response()->json([
-             "churches" => $churches
+            'churchReports' => $church->churchReports()->get()
         ]);
-    }
-
-    public function reports($id)
-    {
-        $church = Church::find($id);
-        $reports = $church->churchReports()->get();
-        return response()->json(['churchReports' => $reports]);
     }
 
     /**
      * Show the form for creating a new resource.
      *
+     * @param  \App\Models\Church  $church
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Church $church)
     {
         //
     }
@@ -42,9 +38,10 @@ class ChurchController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Church  $church
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Church $church)
     {
         //
     }
@@ -52,21 +49,23 @@ class ChurchController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Church  $church
+     * @param  \App\Models\Church  $church
+     * @param  \App\Models\ChurchReport  $churchReport
      * @return \Illuminate\Http\Response
      */
-    public function show(Church $church)
+    public function show(Church $church, ChurchReport $churchReport)
     {
-        return response()->json($church);
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Church  $church
+     * @param  \App\Models\Church  $church
+     * @param  \App\Models\ChurchReport  $churchReport
      * @return \Illuminate\Http\Response
      */
-    public function edit(Church $church)
+    public function edit(Church $church, ChurchReport $churchReport)
     {
         //
     }
@@ -76,9 +75,10 @@ class ChurchController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \App\Models\Church  $church
+     * @param  \App\Models\ChurchReport  $churchReport
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Church $church)
+    public function update(Request $request, Church $church, ChurchReport $churchReport)
     {
         //
     }
@@ -86,10 +86,11 @@ class ChurchController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Church  $church
+     * @param  \App\Models\Church  $church
+     * @param  \App\Models\ChurchReport  $churchReport
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Church $church)
+    public function destroy(Church $church, ChurchReport $churchReport)
     {
         //
     }

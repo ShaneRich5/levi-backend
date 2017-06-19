@@ -11,7 +11,7 @@ use App\Http\Controllers\Controller;
 class NationalOfficeController extends Controller
 {
     public function journals()
-    {   
+    {
         $data = array();
 
         $tithes = Source::where('name', 'LIKE', "%tithe%")->sum('amount') / 100;
@@ -73,7 +73,7 @@ class NationalOfficeController extends Controller
 
         $journal = Journal::first()->get()->toArray()[0];
         $journal['accounts'] = $data;
-        
+
 
         return response()->json([
             'journal' => $journal
@@ -91,16 +91,6 @@ class NationalOfficeController extends Controller
         return response()->json([
             'nationalOffices' => $nationalOffices
         ]);
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -123,17 +113,6 @@ class NationalOfficeController extends Controller
     public function show(NationalOffice $nationalOffice)
     {
         return response()->json($nationalOffice);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\NationalOffice  $nationalOffice
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(NationalOffice $nationalOffice)
-    {
-        //
     }
 
     /**

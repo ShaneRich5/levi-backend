@@ -22,9 +22,12 @@ Route::post('/login', 'Api\AuthController@login');
 Route::get('/refresh', 'Api\AuthController@refresh');
 Route::get('/user', 'Api\AuthController@user');
 
-Route::resource('national-offices', 'Api\NationalOfficeController');
-Route::resource('district-offices', 'Api\DistrictOfficeController');
-Route::resource('churches', 'Api\ChurchController');
+Route::get('organizations', 'Api\OrganizationController@index');
+
+Route::resource('national-offices', 'Api\NationalOfficeController', ['except' => ['create', 'edit']]);
+Route::resource('district-offices', 'Api\DistrictOfficeController', ['except' => ['create', 'edit']]);
+Route::resource('churches', 'Api\ChurchController', ['except' => ['create', 'edit']]);
+Route::resource('churches.church-reports', 'Api\ChurchChurchReportController', ['except' => ['create', 'edit']]);
 
 Route::get('district-offices/{id}/reports', 'Api\DistrictOfficeController@reports');
 
@@ -43,7 +46,6 @@ Route::get('expenses', 'Api\ExpenseController@all');
 Route::get('church-reports/{id}/total', 'Api\ChurchReportController@total');
 Route::get('journal', 'Api\NationalOfficeController@journals');
 
-// Route::
 
 // group([
 //     'prefix' => 'api/v1',
