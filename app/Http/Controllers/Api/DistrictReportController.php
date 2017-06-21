@@ -1,9 +1,10 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
-use App\DistrictReport;
+use App\Models\DistrictReport;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class DistrictReportController extends Controller
 {
@@ -14,7 +15,7 @@ class DistrictReportController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json(['districtReport' => DistrictReport::all()]);
     }
 
     /**
@@ -36,7 +37,10 @@ class DistrictReportController extends Controller
      */
     public function show(DistrictReport $districtReport)
     {
-        //
+        return response()->json([
+            'districtReport' => $districtReport,
+            'expenses' => $districtReport->expenses()
+        ]);
     }
 
     /**

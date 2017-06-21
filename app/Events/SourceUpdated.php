@@ -3,6 +3,8 @@
 namespace App\Events;
 
 use App\Events\Event;
+use App\Models\Source;
+use App\User;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Broadcasting\PrivateChannel;
@@ -15,18 +17,20 @@ class SourceUpdated extends Event implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $data;
+    public $source;
+    public $user;
+    public $attribute;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(Source $source, User $user, $attribute)
     {
-        $this->data = array(
-            'power'=> '10'
-        );
+        $this->source = $source;
+        $this->user = $user;
+        $this->attribute = $attribute;
     }
 
     /**

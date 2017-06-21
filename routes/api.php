@@ -28,11 +28,12 @@ Route::resource('national-offices', 'Api\NationalOfficeController', ['except' =>
 Route::resource('district-offices', 'Api\DistrictOfficeController', ['except' => ['create', 'edit']]);
 Route::resource('churches', 'Api\ChurchController', ['except' => ['create', 'edit']]);
 
+Route::resource('district-reports', 'Api\DistrictReportController', ['except' => ['create', 'edit']]);
 Route::resource('church-reports', 'Api\ChurchReportController', ['except' => ['create', 'edit']]);
+Route::resource('sources', 'Api\SourceController', ['except' => ['create', 'edit']]);
 
 Route::resource('churches.church-reports', 'Api\ChurchChurchReportController', ['except' => ['create', 'edit']]);
-
-Route::resource('sources', 'Api\SourceController', ['except' => ['create', 'edit']]);
+Route::resource('district-offices.district-reports', 'Api\DistrictOfficeDistrictReportController', ['except' => ['create', 'edit']]);
 
 Route::get('district-offices/{id}/reports', 'Api\DistrictOfficeController@reports');
 
@@ -40,16 +41,16 @@ Route::get('churches/{id}/reports', 'Api\ChurchController@reports');
 Route::post('church-reports/{reportId}/sources', 'Api\SourceController@store');
 Route::get('church-reports/{reportId}/sources', 'Api\SourceController@index');
 
-Route::post('district-reports/{reportId}/expenses', 'Api\ExpenseController@store');
+
 
 Route::post('sources/{id}', 'Api\SourceController@update');
 Route::post('expenses/{id}', 'Api\ExpenseController@update');
 
 // Route::get('sources', 'Api\SourceController@all');
-Route::get('expenses', 'Api\ExpenseController@all');
+// Route::get('expenses', 'Api\ExpenseController@all');
 
-Route::get('church-reports/{id}/total', 'Api\ChurchReportController@total');
-Route::get('journal', 'Api\NationalOfficeController@journals');
+// Route::get('church-reports/{id}/total', 'Api\ChurchReportController@total');
+// Route::get('journal', 'Api\NationalOfficeController@journals');
 
 
 // group([

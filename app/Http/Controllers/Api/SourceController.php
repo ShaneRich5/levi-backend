@@ -2,12 +2,19 @@
 
 namespace App\Http\Controllers\Api;
 
+use JWTAuth;
 use App\Models\Source;
+use App\Events\SourceUpdated;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class SourceController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('jwt.auth')->only('update');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -38,7 +45,7 @@ class SourceController extends Controller
      */
     public function show(Source $source)
     {
-        //
+        return response()->json(['source' => $source]);
     }
 
     /**
@@ -50,7 +57,28 @@ class SourceController extends Controller
      */
     public function update(Request $request, Source $source)
     {
+        $user = JWTAuth::parseToken()->toUser();
+        $attribute = 'none';
 
+        if ($request->has('name')) {
+            $attribute = 'name';
+            $source->name = $request->input('name');
+        }
+
+        if ($request->has('amount')) {
+            $attribute = 'amount';
+            $source->amount = $request->input('amount');
+        }
+
+        $source->save();
+
+        event(new SourceUpdated($source, $user, $attribute));
+
+        return response()->json([
+            'source' => $source,
+            'user' => $user,
+            'attribute' => $attribute
+        ]);
     }
 
     /**

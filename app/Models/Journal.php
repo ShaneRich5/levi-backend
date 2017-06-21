@@ -3,12 +3,9 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Mpociot\Firebase\SyncsWithFirebase;
 
 class Journal extends Model
 {
-    use SyncsWithFirebase;
-    
     protected $fillable = [
         'title'
     ];

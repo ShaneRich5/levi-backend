@@ -24,17 +24,6 @@ class ChurchChurchReportController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @param  \App\Models\Church  $church
-     * @return \Illuminate\Http\Response
-     */
-    public function create(Church $church)
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -54,18 +43,6 @@ class ChurchChurchReportController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Church $church, ChurchReport $churchReport)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Church  $church
-     * @param  \App\Models\ChurchReport  $churchReport
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Church $church, ChurchReport $churchReport)
     {
         //
     }
