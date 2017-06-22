@@ -10,7 +10,7 @@ use Illuminate\Http\Response;
 use App\Http\Controllers\Controller;
 use Tymon\JWTAuth\Exceptions\JWTException;
 
-class AuthController extends Controller 
+class AuthController extends Controller
 {
 
     /** @var Centaur\AuthManager */
@@ -19,7 +19,7 @@ class AuthController extends Controller
     /**
      * Creates a new instance of registration controller
      */
-    public function __construct(AuthManager $authManager) 
+    public function __construct(AuthManager $authManager)
     {
         $this->authManager = $authManager;
     }
@@ -46,7 +46,7 @@ class AuthController extends Controller
 
         // Attempt the registration
         $result = $this->authManager->register($credentials, true);
-        
+
         if ($result->isFailure()) {
             return response()->json([
                 'error' => 'register failed'
@@ -83,7 +83,10 @@ class AuthController extends Controller
         }
 
         // all good so return the token
-        return response()->json(compact('token'));
+        return response()->json([
+            'token' => $token,
+            'user' => JWTAuth::toUser($token)
+        ]);
     }
 
     public function login(Request $request)
@@ -99,7 +102,7 @@ class AuthController extends Controller
         try {
             // attempt to verify the credentials and create a token for the user
             if (! $token = JWTAuth::attempt($credentials)) {
-        
+
                 return response()->json([
                     'status' => 'error',
                     'error' => 'invalid_credentials',
