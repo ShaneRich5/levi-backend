@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class DistrictReport extends Model
 {
     protected $fillable = [
-        'title'
+        'title', 'opening_fund'
     ];
 
     public function districtOffice() {

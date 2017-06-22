@@ -37,7 +37,7 @@ class DistrictReportController extends Controller
      */
     public function show(DistrictReport $districtReport)
     {
-        $report = $districtReport->get();
+        $report = $districtReport->first();
         $expenses = $districtReport->expenses()->get();
         $churchSummary = $districtReport->churchReports->map(function($churchReport) {
             $church = $churchReport->church()->first();
