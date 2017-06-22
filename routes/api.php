@@ -31,6 +31,7 @@ Route::resource('churches', 'Api\ChurchController', ['except' => ['create', 'edi
 Route::resource('district-reports', 'Api\DistrictReportController', ['except' => ['create', 'edit']]);
 Route::resource('church-reports', 'Api\ChurchReportController', ['except' => ['create', 'edit']]);
 Route::resource('sources', 'Api\SourceController', ['except' => ['create', 'edit']]);
+Route::resource('expenses', 'Api\ExpenseController', ['except' => ['create', 'edit']]);
 
 Route::resource('churches.church-reports', 'Api\ChurchChurchReportController', ['except' => ['create', 'edit']]);
 Route::resource('district-offices.district-reports', 'Api\DistrictOfficeDistrictReportController', ['except' => ['create', 'edit']]);
@@ -43,8 +44,8 @@ Route::get('church-reports/{reportId}/sources', 'Api\SourceController@index');
 
 
 
-Route::post('sources/{id}', 'Api\SourceController@update');
-Route::post('expenses/{id}', 'Api\ExpenseController@update');
+// Route::post('sources/{id}', 'Api\SourceController@update');
+// Route::post('expenses/{id}', 'Api\ExpenseController@update');
 
 // Route::get('sources', 'Api\SourceController@all');
 // Route::get('expenses', 'Api\ExpenseController@all');

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use JWTAuth;
 use App\Models\Source;
 use App\Events\SourceUpdated;
+use App\Events\ChurchReportUpdated;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -73,6 +74,7 @@ class SourceController extends Controller
         $source->save();
 
         event(new SourceUpdated($source, $user, $attribute));
+        event(new ChurchReportUpdated($source->churchReport, $user));
 
         return response()->json([
             'source' => $source,

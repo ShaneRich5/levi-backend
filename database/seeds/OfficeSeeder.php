@@ -17,21 +17,21 @@ class OfficeSeeder extends Seeder
         Eloquent::unguard();
 
 		//disable foreign key check for this connection before running seeders
-		
-        // DB::statement('SET FOREIGN_KEY_CHECKS=0;');
-        
-        // DB::table('churches')->truncate();
-        // DB::table('district_offices')->truncate();
-        // DB::table('national_offices')->truncate();
-        
-        // DB::table('church_reports')->truncate();
-        // DB::table('district_reports')->truncate();
-        // DB::table('journals')->truncate();
-        
-		// DB::statement('SET FOREIGN_KEY_CHECKS=1;');
-        
+
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+
+        DB::table('churches')->truncate();
+        DB::table('district_offices')->truncate();
+        DB::table('national_offices')->truncate();
+
+        DB::table('church_reports')->truncate();
+        DB::table('district_reports')->truncate();
+        DB::table('journals')->truncate();
+
+		DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+
         $nationalOffice = NationalOffice::create(['name' => 'Island Office']);
-    
+
         $districtOffice = $nationalOffice->districtOffices()->create(['name' => 'National Testament Church of God']);
 
         $newTestamentChurch = $districtOffice->churches()->create(['name' => 'National Testament Church of God']);

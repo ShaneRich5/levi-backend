@@ -37,9 +37,24 @@ class DistrictReportController extends Controller
      */
     public function show(DistrictReport $districtReport)
     {
+        $report = $districtReport->get();
+        $expenses = $districtReport->expenses()->get();
+        $churchSummary = $districtReport->churchReports->map(function($churchReport) {
+            $church = $churchReport->church()->first();
+
+            return [
+                'id' => $churchReport->id,
+                'church_name' => $church->name,
+                'title' => $churchReport->title,
+                'church_id' => $churchReport->church_id,
+                'total' => $churchReport->sources->sum('amount')
+            ];
+        });
+
         return response()->json([
-            'districtReport' => $districtReport,
-            'expenses' => $districtReport->expenses()
+            'districtReport' => $report,
+            'expenses' => $expenses,
+            'churchReports' => $churchSummary
         ]);
     }
 
