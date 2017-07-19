@@ -21,11 +21,11 @@ class UserController extends Controller
     public function __construct(AuthManager $authManager)
     {
         // Middleware
-        $this->middleware('sentinel.auth');
-        $this->middleware('sentinel.access:users.create', ['only' => ['create', 'store']]);
-        $this->middleware('sentinel.access:users.view', ['only' => ['index', 'show']]);
-        $this->middleware('sentinel.access:users.update', ['only' => ['edit', 'update']]);
-        $this->middleware('sentinel.access:users.destroy', ['only' => ['destroy']]);
+        // $this->middleware('sentinel.auth');
+        // $this->middleware('sentinel.access:users.create', ['only' => ['create', 'store']]);
+        // $this->middleware('sentinel.access:users.view', ['only' => ['index', 'show']]);
+        // $this->middleware('sentinel.access:users.update', ['only' => ['edit', 'update']]);
+        // $this->middleware('sentinel.access:users.destroy', ['only' => ['destroy']]);
 
         // Dependency Injection
         $this->userRepository = app()->make('sentinel.users');
@@ -41,7 +41,9 @@ class UserController extends Controller
     {
         $users = $this->userRepository->createModel()->with('roles')->paginate(15);
 
-        return view('Centaur::users.index', ['users' => $users]);
+        return response()->json(['users' => $users]);
+
+        // return view('Centaur::users.index', ['users' => $users]);
     }
 
     /**

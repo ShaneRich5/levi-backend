@@ -17,32 +17,35 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
+Route::post('/register', 'AuthController@register');
+Route::post('/login', 'AuthController@login');
+Route::get('/refresh', 'AuthController@refresh');
+Route::get('/user', 'AuthController@user');
+
+Route::resource('organizations', 'OrganizationController', ['except' => ['create', 'edit']]);
+
 Route::group(['namespace' => 'Api'], function() {
-    Route::post('/register', 'AuthController@register');
-    Route::post('/login', 'AuthController@login');
-    Route::get('/refresh', 'AuthController@refresh');
-    Route::get('/user', 'AuthController@user');
 
-    Route::get('organizations', 'OrganizationController@index');
+    // Route::get('organizations', 'OrganizationController@index');
 
-    Route::resource('national-offices', 'NationalOfficeController', ['except' => ['create', 'edit']]);
-    Route::resource('district-offices', 'DistrictOfficeController', ['except' => ['create', 'edit']]);
-    Route::resource('churches', 'ChurchController', ['except' => ['create', 'edit']]);
+    // Route::resource('national-offices', 'NationalOfficeController', ['except' => ['create', 'edit']]);
+    // Route::resource('district-offices', 'DistrictOfficeController', ['except' => ['create', 'edit']]);
+    // Route::resource('churches', 'ChurchController', ['except' => ['create', 'edit']]);
 
-    Route::resource('district-reports', 'DistrictReportController', ['except' => ['create', 'edit']]);
-    Route::resource('church-reports', 'ChurchReportController', ['except' => ['create', 'edit']]);
-    Route::resource('sources', 'SourceController', ['except' => ['create', 'edit']]);
-    Route::resource('expenses', 'ExpenseController', ['except' => ['create', 'edit']]);
+    // Route::resource('district-reports', 'DistrictReportController', ['except' => ['create', 'edit']]);
+    // Route::resource('church-reports', 'ChurchReportController', ['except' => ['create', 'edit']]);
+    // Route::resource('sources', 'SourceController', ['except' => ['create', 'edit']]);
+    // Route::resource('expenses', 'ExpenseController', ['except' => ['create', 'edit']]);
 
-    Route::resource('churches.church-reports', 'ChurchChurchReportController', ['except' => ['create', 'edit']]);
-    Route::resource('district-offices.district-reports', 'DistrictOfficeDistrictReportController', ['except' => ['create', 'edit']]);
-    Route::resource('national-offices.journals', 'NationalOfficeJournalController', ['except' => ['create', 'edit']]);
+    // Route::resource('churches.church-reports', 'ChurchChurchReportController', ['except' => ['create', 'edit']]);
+    // Route::resource('district-offices.district-reports', 'DistrictOfficeDistrictReportController', ['except' => ['create', 'edit']]);
+    // Route::resource('national-offices.journals', 'NationalOfficeJournalController', ['except' => ['create', 'edit']]);
 
-    Route::get('district-offices/{id}/reports', 'DistrictOfficeController@reports');
+    // Route::get('district-offices/{id}/reports', 'DistrictOfficeController@reports');
 
-    Route::get('churches/{id}/reports', 'ChurchController@reports');
-    Route::post('church-reports/{reportId}/sources', 'SourceController@store');
-    Route::get('church-reports/{reportId}/sources', 'SourceController@index');
+    // Route::get('churches/{id}/reports', 'ChurchController@reports');
+    // Route::post('church-reports/{reportId}/sources', 'SourceController@store');
+    // Route::get('church-reports/{reportId}/sources', 'SourceController@index');
 });
 
 // Route::post('sources/{id}', 'Api\SourceController@update');
