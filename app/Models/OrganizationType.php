@@ -4,11 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Address extends Model
+class OrganizationType extends Model
 {
-    protected $fillable = [
-        'street', 'parish', 'country'
-    ];
+    protected $fillable = ['name', 'description'];
 
     public function organizations() {
         return $this->belongsToMany('App\Models\Organization');

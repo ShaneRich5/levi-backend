@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Organization;
+use App\Models\Address;
 use Illuminate\Http\Request;
-use App\Requests\StoreOrganization;
+use App\Http\Requests\StoreOrganization;
 
 class OrganizationController extends Controller
 {
@@ -26,7 +27,19 @@ class OrganizationController extends Controller
      */
     public function store(StoreOrganization $request)
     {
+        $address = new Address;
+        $address->street = $request->street;
+        $address->parish = $request->parish;
+        $address->country = $request->country;
+        $address->save();
 
+        $organization = new Organization;
+        $organization->name = $request->name;
+        $organization->save();
+
+        $organization->addresses()->attach($address);
+
+        return $organization;
     }
 
     /**
@@ -37,7 +50,7 @@ class OrganizationController extends Controller
      */
     public function show(Organization $organization)
     {
-        //
+        return response()->json(['organization' => $organization]);
     }
 
     /**
