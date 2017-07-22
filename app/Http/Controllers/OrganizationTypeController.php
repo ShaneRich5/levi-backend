@@ -8,6 +8,13 @@ use Illuminate\Http\Request;
 
 class OrganizationTypeController extends Controller
 {
+    protected $organizationType;
+
+    public function __construct(OrganizationType $organizationType)
+    {
+        $this->organizationType = $organizationType;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,8 +22,9 @@ class OrganizationTypeController extends Controller
      */
     public function index()
     {
+        $types = $this->organizationType->all(['id', 'name'])->toArray();
         return response()->json([
-            'organization_types' => OrganizationType::all()
+            'organization_types' => $types
         ]);
     }
 

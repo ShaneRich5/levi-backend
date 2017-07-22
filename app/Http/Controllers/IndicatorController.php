@@ -8,6 +8,13 @@ use Illuminate\Http\Request;
 
 class IndicatorController extends Controller
 {
+    protected $indicator;
+
+    public function __construct(Indicator $indicator)
+    {
+        $this->indicator = $indicator;
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -15,7 +22,8 @@ class IndicatorController extends Controller
      */
     public function index()
     {
-        //
+        $indicators = $this->indicator->all();
+        return response()->json(['indicators' => $indicators]);
     }
 
     /**

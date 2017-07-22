@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateOrganizationOrganizationTypesTable extends Migration
+class CreateOrganizationOrganizationTypeTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateOrganizationOrganizationTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('organization_organization_types', function (Blueprint $table) {
+        Schema::create('organization_organization_type', function (Blueprint $table) {
             $table->integer('organization_id')->unsigned()->index();
             $table->foreign('organization_id')->references('id')->on('organizations')->onDelete('cascade');
             $table->integer('organization_type_id')->unsigned()->index();
@@ -28,6 +28,6 @@ class CreateOrganizationOrganizationTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('organization_organization_types');
+        Schema::dropIfExists('organization_organization_type');
     }
 }

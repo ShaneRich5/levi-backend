@@ -2,11 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreIndicatorType;
 use App\Models\IndicatorType;
 use Illuminate\Http\Request;
 
 class IndicatorTypeController extends Controller
 {
+    protected $indicatorType;
+
+    public function __construct(IndicatorType $indicatorType)
+    {
+        $this->indicatorType = $indicatorType;
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +21,9 @@ class IndicatorTypeController extends Controller
      */
     public function index()
     {
-        //
+        return response()->json([
+            'indicator_types' => $this->indicatorType->all()
+        ]);
     }
 
     /**
@@ -23,9 +32,9 @@ class IndicatorTypeController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreIndicatorType $request)
     {
-        //
+
     }
 
     /**
@@ -36,7 +45,7 @@ class IndicatorTypeController extends Controller
      */
     public function show(IndicatorType $indicatorType)
     {
-        //
+        return response()->json(['indicator_type' => $indicatorType]);
     }
 
     /**

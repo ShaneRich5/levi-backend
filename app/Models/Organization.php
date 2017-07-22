@@ -6,18 +6,30 @@ use Illuminate\Database\Eloquent\Model;
 
 class Organization extends Model
 {
-    protected $fillable = [
-        'name'
-    ];
+    protected $fillable = ['name'];
+
+    protected $hidden = ['pivot'];
+
+    protected $appends = ['types'];
 
     public function addresses()
     {
         return $this->belongsToMany('App\Models\Address');
     }
 
-    public function organizationTypes()
+    public function types()
     {
         return $this->belongsToMany('App\Models\OrganizationType');
+    }
+
+    public function getIsAdminAttribute()
+    {
+        return true;
+    }
+
+    public function getTypesAttribute()
+    {
+        return $this->types()->pluck('id');
     }
 
     public function churchReports() {

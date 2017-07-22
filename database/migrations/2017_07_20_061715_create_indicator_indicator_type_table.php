@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateIndicatorIndicatorTypesTable extends Migration
+class CreateIndicatorIndicatorTypeTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateIndicatorIndicatorTypesTable extends Migration
      */
     public function up()
     {
-        Schema::create('indicator_indicator_types', function (Blueprint $table) {
+        Schema::create('indicator_indicator_type', function (Blueprint $table) {
             $table->integer('indicator_id')->unsigned()->index();
             $table->foreign('indicator_id')->references('id')->on('indicators')->onDelete('cascade');
             $table->integer('indicator_type_id')->unsigned()->index();
@@ -28,6 +28,6 @@ class CreateIndicatorIndicatorTypesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('indicator_indicator_types');
+        Schema::dropIfExists('indicator_indicator_type');
     }
 }
