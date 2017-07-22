@@ -18,6 +18,8 @@ class CreateAddressesTable extends Migration
             $table->string('street');
             $table->string('parish');
             $table->string('country');
+            $table->integer('addressable_id');
+            $table->string('addressable_type');
             $table->timestamps();
         });
     }
@@ -32,6 +34,6 @@ class CreateAddressesTable extends Migration
         DB::statement('SET FOREIGN_KEY_CHECKS = 0');
         Schema::dropIfExists('addresses');
         DB::statement('SET FOREIGN_KEY_CHECKS = 1');
-        
+
     }
 }

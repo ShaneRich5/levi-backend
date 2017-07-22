@@ -10,11 +10,11 @@ class Organization extends Model
 
     protected $hidden = ['pivot'];
 
-    protected $appends = ['types'];
+    protected $appends = ['types', 'address'];
 
-    public function addresses()
+    public function address()
     {
-        return $this->belongsToMany('App\Models\Address');
+        return $this->morphOne('App\Models\Address', 'addressable');
     }
 
     public function types()
@@ -22,25 +22,28 @@ class Organization extends Model
         return $this->belongsToMany('App\Models\OrganizationType');
     }
 
-    public function getIsAdminAttribute()
-    {
-        return true;
-    }
-
     public function getTypesAttribute()
     {
         return $this->types()->pluck('id');
     }
 
-    public function churchReports() {
-        return $this->hasMany('\App\Models\ChurchReport');
+    public function churches()
+    {
+        return $this->hasMany('App\Models\Organizations', 'organization_id');
     }
 
-    public function districtReports() {
-        return $this->hasMany('\App\Models\DistrictReport');
-    }
+    public function
 
-    public function journals() {
-        return $this->hasMany('\App\Models\Journal');
-    }
+
+    // public function churchReports() {
+    //     return $this->hasMany('\App\Models\ChurchReport');
+    // }
+
+    // public function districtReports() {
+    //     return $this->hasMany('\App\Models\DistrictReport');
+    // }
+
+    // public function journals() {
+    //     return $this->hasMany('\App\Models\Journal');
+    // }
 }
