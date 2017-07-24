@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class DistrictOffice extends Model
 {
+    public function organization()
+    {
+        return $this->belongsTo('App\Models\Organization');
+    }
+
     public function nationalOffice()
     {
         return $this->belongsTo('App\Models\NationalOffice');

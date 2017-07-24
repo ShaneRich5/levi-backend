@@ -6,6 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class Church extends Model
 {
+    public function organization()
+    {
+        return $this->belongsTo('App\Models\Organization');
+    }
+
     public function districtOffice()
     {
         return $this->belongsTo('App\Models\DistrictOffice');

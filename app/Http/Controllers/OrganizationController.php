@@ -2,21 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Organization;
-use App\Models\OrganizationType;
 use App\Models\Address;
+use App\Models\Church;
+use App\Models\DistrictOffice;
+use App\Models\NationalOffice;
+use App\Models\Organization;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreOrganization;
 
 class OrganizationController extends Controller
 {
     protected $organization;
-    protected $organizationTypes;
+    protected $districtOffice;
+    protected $nationalOffice;
+    protected $church;
 
-    public function __construct(Organization $organization, OrganizationType $organizationType)
+    public function __construct(Organization $organization, NationalOffice $nationalOffice, DistrictOffice $districtOffice, Church $church)
     {
         $this->organization = $organization;
-        $this->organizationType = $organizationType;
+        $this->nationalOffice = $nationalOffice;
+        $this->districtOffice = $districtOffice;
+        $this->church = $church;
     }
     /**
      * Display a listing of the resource.
@@ -26,18 +32,15 @@ class OrganizationController extends Controller
     public function index()
     {
         $organizations = $this->organization->get();
-        // $organizations = $this->organization->with(['types' => function($query) {
-            // $query->select('id');
-            // return collect($query->select('id')->get())->map(function($value) {
-            //     return $value['id'];
-            // });
-        // }])->get();
-
-        $types = $this->organizationType->all(['id', 'name', 'description']);
+        $nationalOffices = $this->nationalOffice->get();
+        $districtOffices = $this->districtOffice->get();
+        $churches = $this->church->get();
 
         return response()->json([
             'organizations' => $organizations,
-            'organizationTypes' => $types
+            'district_offices' => $districtOffices,
+            'national_offices' => $nationalOffices,
+            'churches' => $churches
         ]);
     }
 
@@ -61,13 +64,7 @@ class OrganizationController extends Controller
 
         $organization->addresses()->attach($address);
 
-        $typeIds = collect($request->types)->filter(function($value) {
-            return $this->organizationType->where('id', '=', $value['id'])->exists();
-        })->map(function($value) {
-            return $value['id'];
-        });
-
-        $organization->types()->attach($typeIds);
+        $types = $request->types;
 
         return $organization;
     }

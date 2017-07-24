@@ -18,7 +18,7 @@ class CreateAddressesTable extends Migration
             $table->string('street');
             $table->string('parish');
             $table->string('country');
-            $table->integer('addressable_id');
+            $table->integer('addressable_id')->nullable();
             $table->string('addressable_type');
             $table->timestamps();
         });

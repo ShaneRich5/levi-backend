@@ -25,3 +25,4 @@ Route::get('/user', 'AuthController@user');
 Route::resource('organizations', 'OrganizationController', ['except' => ['create', 'edit']]);
 Route::resource('indicators', 'IndicatorController', ['except' => ['create', 'edit']]);
 Route::resource('indicator-types', 'IndicatorTypeController', ['except' => ['create', 'edit']]);
+Route::resource('reports', 'ReportController', ['except' => ['create', 'edit']]);
