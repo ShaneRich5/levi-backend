@@ -7,8 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 class DistrictReport extends Model
 {
     protected $fillable = [
-        'title', 'opening_fund'
+        'opening_fund'
     ];
+
+    protected $appends = ['title'];
+
+    protected function getTitleAttribute() {
+        return $this->report()->select(['title']);
+    }
+
+    public function report()
+    {
+        return $this->morphOne('App\Models\Report', 'reportable');
+    }
 
     public function districtOffice() {
         return $this->belongsTo('App\Models\DistrictOffice');

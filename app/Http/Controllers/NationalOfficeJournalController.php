@@ -10,21 +10,26 @@ use App\Models\Church;
 use App\Models\ChurchReport;
 use App\Models\Report;
 use Illuminate\Http\Request;
-use App\Http\Requests\StoreJournal;
 
-class JournalController extends Controller
+class NationalOfficeJournalController extends Controller
 {
+    protected $journal;
+
+    public function __construct(Journal $journal)
+    {
+        $this->journal = $journal;
+    }
+
     /**
      * Display a listing of the resource.
      *
+     * @param  \App\Models\NationalOffice  $nationalOffice
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(NationalOffice $nationalOffice)
     {
         return [
-            'journals' => Journal::all(),
-            'church_reports' => ChurchReport::all(),
-            'district_reports' => DistrictReport::all()
+            'journals' => $nationalOffice->journals()->get()
         ];
     }
 
@@ -32,23 +37,26 @@ class JournalController extends Controller
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\NationalOffice  $nationalOffice
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreJournal $request)
+    public function store(Request $request, NationalOffice $nationalOffice)
     {
         $journal = new Journal;
-        $journal->national_office_id = $request->national_office;
+        $journal->national_office_id = $nationalOffice->id;
         $journal->save();
-        $journal->report()->save(new Report(['title' => 'Journal #' + $journal->id]));
+        $journalTitle = 'Journal #' . $journal->id;
+        $journal->report()->save(new Report(['title' => $journalTitle]));
 
-        $districtOffices = NationalOffice::find($request->national_office)->districtOffices()->get();
+        $districtOffices = $nationalOffice->districtOffices()->get();
 
         foreach($districtOffices as $districtOffice) {
             $districtReport = new DistrictReport;
             $districtReport->journal_id = $journal->id;
             $districtReport->district_office_id = $districtOffice->id;
             $districtReport->save();
-            $districtReport->report()->save(new Report(['title' => 'District Report #' + $districtReport->id]));
+            $districtReportTitle = 'District Report #' . $districtReport->id;
+            $districtReport->report()->save(new Report(['title' => $districtReportTitle]));
 
             $churches = $districtOffice->churches()->get();
 
@@ -57,24 +65,24 @@ class JournalController extends Controller
                 $churchReport->district_report_id = $districtReport->id;
                 $churchReport->church_id = $church->id;
                 $churchReport->save();
-                $churchReport->report()->save(new Report(['title' => 'Church Report #' + $churchReport->id]));
+                $churchReportTitle = 'Church Report #' . $churchReport->id;
+                $churchReport->report()->save(new Report(['title' => $churchReportTitle]));
             }
         }
 
         return [
-            'journal' => $journal,
-            'district_report' => $journal->districtReports()->get(),
-            'church_report' => $journal->churchReports()->get()
+            'journal' => $journal
         ];
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Journal  $journal
+     * @param  \App\Models\NationalOffice  $nationalOffice
+     * @param  \App\Models\Journal  $journal
      * @return \Illuminate\Http\Response
      */
-    public function show(Journal $journal)
+    public function show(NationalOffice $nationalOffice, Journal $journal)
     {
         //
     }
@@ -83,10 +91,11 @@ class JournalController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Journal  $journal
+     * @param  \App\Models\NationalOffice  $nationalOffice
+     * @param  \App\Models\Journal  $journal
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Journal $journal)
+    public function update(Request $request, NationalOffice $nationalOffice, Journal $journal)
     {
         //
     }
@@ -94,10 +103,11 @@ class JournalController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Journal  $journal
+     * @param  \App\Models\NationalOffice  $nationalOffice
+     * @param  \App\Models\Journal  $journal
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Journal $journal)
+    public function destroy(NationalOffice $nationalOffice, Journal $journal)
     {
         //
     }

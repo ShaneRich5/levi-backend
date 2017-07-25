@@ -53,7 +53,7 @@ class OrganizationsTableSeeder extends Seeder
         $nationalOffice->districtOffices()->save($districtOfficeA);
         $nationalOffice->districtOffices()->save($districtOfficeB);
 
-
-        $reportA = new Report
+        // $districtOffices = [$districtOfficeA, $districtOfficeB];
+        // $churches = [$churchA, $churchB, $churchC, $churchD];
     }
 }

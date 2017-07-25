@@ -8,12 +8,23 @@ class ChurchReport extends Model
 {
     protected $fillable = [];
 
+    protected $appends = ['title'];
+
+    protected function getTitleAttribute() {
+        return $this->report()->select(['title']);
+    }
+
     public function church() {
         return $this->belongsTo('App\Models\Church');
     }
 
     public function districtReport() {
         return $this->belongsTo('App\Models\DistrictReport');
+    }
+
+    public function report()
+    {
+        return $this->morphOne('App\Models\Report', 'reportable');
     }
 
     public function sources() {

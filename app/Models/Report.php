@@ -9,6 +9,6 @@ class Report extends Model
     protected $fillable = ['title'];
 
     public function reportable() {
-
+        return $this->morphTo();
     }
 }

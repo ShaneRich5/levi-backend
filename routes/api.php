@@ -26,3 +26,8 @@ Route::resource('organizations', 'OrganizationController', ['except' => ['create
 Route::resource('indicators', 'IndicatorController', ['except' => ['create', 'edit']]);
 Route::resource('indicator-types', 'IndicatorTypeController', ['except' => ['create', 'edit']]);
 Route::resource('reports', 'ReportController', ['except' => ['create', 'edit']]);
+// Route::resource('journals', 'JournalController', ['except' => ['create', 'edit']]);
+
+Route::resource('national-offices.journals', 'NationalOfficeJournalController', ['except' => ['create', 'edit']]);
+Route::resource('district-offices.church-reports', 'DistrictOfficeDistrictReportController', ['except' => ['create', 'edit']]);
+Route::resource('churches.church-reports', 'ChurchChurchReportController', ['except' => ['create', 'edit']]);

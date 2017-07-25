@@ -15,4 +15,9 @@ class NationalOffice extends Model
     {
         return $this->hasMany('App\Models\DistrictOffice');
     }
+
+    public function journals()
+    {
+        return $this->hasMany('App\Models\Journal');
+    }
 }
