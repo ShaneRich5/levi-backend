@@ -15,4 +15,9 @@ class Church extends Model
     {
         return $this->belongsTo('App\Models\DistrictOffice');
     }
+
+    public function churchReports()
+    {
+        return $this->hasMany('App\Models\ChurchReport');
+    }
 }

@@ -16,6 +16,11 @@ class DistrictOffice extends Model
         return $this->belongsTo('App\Models\NationalOffice');
     }
 
+    public function districtReports()
+    {
+        return $this->hasMany('App\Models\DistrictReport');
+    }
+
     public function churches()
     {
         return $this->hasMany('App\Models\Church');

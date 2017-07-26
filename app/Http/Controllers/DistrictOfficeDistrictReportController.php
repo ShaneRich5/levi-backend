@@ -17,7 +17,7 @@ class DistrictOfficeDistrictReportController extends Controller
     public function index(DistrictOffice $districtOffice)
     {
         return [
-            'district_reports' => $districtOffice->districtReports()
+            'district_reports' => $districtOffice->districtReports()->get()
         ];
     }
 

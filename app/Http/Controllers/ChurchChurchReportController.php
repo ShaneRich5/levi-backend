@@ -17,7 +17,7 @@ class ChurchChurchReportController extends Controller
     public function index(Church $church)
     {
         return [
-            'church_reports' => $church->churchReports()
+            'church_reports' => $church->churchReports()->get()
         ];
     }
 
