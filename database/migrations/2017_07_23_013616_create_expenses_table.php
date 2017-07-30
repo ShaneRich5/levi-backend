@@ -18,8 +18,8 @@ class CreateExpensesTable extends Migration
             $table->string('name');
             $table->integer('amount');
             $table->string('description')->nullable();
-            $table->integer('district_office_id')->unsigned();
-            $table->foreign('district_office_id')->references('id')->on('district_offices')->onDelete('cascade');
+            $table->integer('district_report_id')->unsigned();
+            $table->foreign('district_report_id')->references('id')->on('district_reports')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -13,7 +13,7 @@ class DistrictReport extends Model
     protected $appends = ['title'];
 
     protected function getTitleAttribute() {
-        return $this->report()->select(['title']);
+        return $this->report()->first()->toArray()['title'];
     }
 
     public function report()

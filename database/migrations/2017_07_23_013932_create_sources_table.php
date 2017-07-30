@@ -18,8 +18,8 @@ class CreateSourcesTable extends Migration
             $table->string('name');
             $table->integer('amount');
             $table->string('description')->nullable();
-            $table->integer('church_id')->unsigned();
-            $table->foreign('church_id')->references('id')->on('churches')->onDelete('cascade');
+            $table->integer('church_report_id')->unsigned();
+            $table->foreign('church_report_id')->references('id')->on('church_reports')->onDelete('cascade');
             $table->timestamps();
         });
     }

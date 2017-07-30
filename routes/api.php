@@ -31,3 +31,4 @@ Route::resource('reports', 'ReportController', ['except' => ['create', 'edit']])
 Route::resource('national-offices.journals', 'NationalOfficeJournalController', ['except' => ['create', 'edit']]);
 Route::resource('district-offices.district-reports', 'DistrictOfficeDistrictReportController', ['except' => ['create', 'edit']]);
 Route::resource('churches.church-reports', 'ChurchChurchReportController', ['except' => ['create', 'edit']]);
+Route::resource('church-reports.sources', 'ChurchReportSourceController', ['except' => ['create', 'edit']]);
