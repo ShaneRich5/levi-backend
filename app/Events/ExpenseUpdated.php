@@ -17,19 +17,15 @@ class ExpenseUpdated extends Event implements ShouldBroadcast
     use Dispatchable, InteractsWithSockets, SerializesModels;
 
     public $expense;
-    public $user;
-    public $attribute;
 
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct(Expense $expense, User $user, $attribute)
+    public function __construct(Expense $expense)
     {
         $this->expense = $expense;
-        $this->user = $user;
-        $this->attribute = $attribute;
     }
 
     /**

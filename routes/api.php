@@ -26,9 +26,15 @@ Route::resource('organizations', 'OrganizationController', ['except' => ['create
 Route::resource('indicators', 'IndicatorController', ['except' => ['create', 'edit']]);
 Route::resource('indicator-types', 'IndicatorTypeController', ['except' => ['create', 'edit']]);
 Route::resource('reports', 'ReportController', ['except' => ['create', 'edit']]);
+Route::resource('church-reports', 'ChurchReportController', ['except' => ['create', 'edit']]);
+Route::resource('district-reports', 'DistrictReportController', ['except' => ['create', 'edit']]);
 // Route::resource('journals', 'JournalController', ['except' => ['create', 'edit']]);
 
 Route::resource('national-offices.journals', 'NationalOfficeJournalController', ['except' => ['create', 'edit']]);
 Route::resource('district-offices.district-reports', 'DistrictOfficeDistrictReportController', ['except' => ['create', 'edit']]);
 Route::resource('churches.church-reports', 'ChurchChurchReportController', ['except' => ['create', 'edit']]);
 Route::resource('church-reports.sources', 'ChurchReportSourceController', ['except' => ['create', 'edit']]);
+Route::resource('district-reports.expenses', 'DistrictReportExpenseController', ['except' => ['create', 'edit']]);
+
+Route::get('district-reports/{id}/indicators', 'DistrictReportController@indicators');
+Route::get('organizations/{id}/reports', 'OrganizationController@reports');

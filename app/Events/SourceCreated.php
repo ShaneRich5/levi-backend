@@ -36,6 +36,6 @@ class SourceCreated extends Event implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('levi-notifications');
+        return ['levi-notifications'];
     }
 }

@@ -102,4 +102,25 @@ class OrganizationController extends Controller
     {
         //
     }
+
+    public function reports($id)
+    {
+        $organization = Organization::find($id);
+
+        $result = [];
+
+        $church = $organization->church()->first();
+        $districtOffice = $organization->districtOffice()->first();
+        $nationalOffice = $organization->nationalOffice()->first();
+
+        if ($church != null) {
+            $result['church_reports'] = $church->churchReports()->get();
+        }
+
+        if ($districtOffice != null) {
+            $result['district_reports'] = $districtOffice->districtReports()->get();
+        }
+
+        return $result;
+    }
 }

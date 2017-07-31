@@ -10,7 +10,11 @@ class DistrictReport extends Model
         'opening_fund'
     ];
 
-    protected $appends = ['title'];
+    protected $appends = ['title', 'church_reports'];
+
+    protected function getChurchReportsAttribute() {
+        return $this->churchReports()->get()->pluck('id');
+    }
 
     protected function getTitleAttribute() {
         return $this->report()->first()->toArray()['title'];
@@ -35,5 +39,9 @@ class DistrictReport extends Model
 
     public function expenses() {
         return $this->hasMany('\App\Models\Expense');
+    }
+
+    public function sources() {
+        return $this->hasManyThrough('App\Models\Source', 'App\Models\ChurchReport');
     }
 }
