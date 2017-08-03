@@ -7,16 +7,16 @@ use App\Models\Address;
 use App\Models\Organization;
 use Illuminate\Database\Seeder;
 
-class SampleDataSeeder extends Seeder {
-
-	/**
+class SampleDataTableSeeder extends Seeder
+{
+    /**
      * Run the database seeds.
      *
      * @return void
      */
     public function run()
-	{
-		$organization1 = Organization::create(['name' => 'Clifton']);
+    {
+        $organization1 = Organization::create(['name' => 'Clifton']);
         $organization2 = Organization::create(['name' => 'Waltham Park']);
         $organization3 = Organization::create(['name' => 'Eastwood Park']);
         $organization4 = Organization::create(['name' => 'Mountain View']);
@@ -95,8 +95,8 @@ class SampleDataSeeder extends Seeder {
 		$organization17->nationalOffice()->save($nationalOffice1);
 
 		$nationalOffice1->districtOffices()->save($districtOffice1);
-		$districtOffice1->churches()->saveMany([$districtOffice1, $districtOffice2, $districtOffice3, $districtOffice4, $districtOffice5,
-			$districtOffice6, $districtOffice7, $districtOffice8, $districtOffice9, $districtOffice10, $districtOffice11,
-			$districtOffice12, $districtOffice13, $districtOffice14, $districtOffice15]);
+		$districtOffice1->churches()->saveMany([$church1, $church2, $church3, $church4, $church5,
+			$church6, $church7, $church8, $church9, $church10, $church11,
+			$church12, $church13, $church14, $church15]);
 	}
 }
