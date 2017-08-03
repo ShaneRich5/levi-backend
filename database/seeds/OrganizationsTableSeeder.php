@@ -16,6 +16,8 @@ class OrganizationsTableSeeder extends Seeder
      */
     public function run()
     {
+
+
         $organizationA = Organization::create(['name' => 'Emmanuel Apostolic Church']);
         $organizationB = Organization::create(['name' => 'Holy Cross Catholic Church  ']);
         $organizationC = Organization::create(['name' => 'Church of God (7th Day)']);
