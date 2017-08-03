@@ -95,8 +95,8 @@ class SampleDataSeeder extends Seeder {
 		$organization17->nationalOffice()->save($nationalOffice1);
 
 		$nationalOffice1->districtOffices()->save($districtOffice1);
-		$districtOffice1->churches()->saveMany([$organization1, $organization2, $organization3, $organization4, $organization5,
-			$organization6, $organization7, $organization8, $organization9, $organization10, $organization11,
-			$organization12, $organization13, $organization14, $organization15]);
+		$districtOffice1->churches()->saveMany([$districtOffice1, $districtOffice2, $districtOffice3, $districtOffice4, $districtOffice5,
+			$districtOffice6, $districtOffice7, $districtOffice8, $districtOffice9, $districtOffice10, $districtOffice11,
+			$districtOffice12, $districtOffice13, $districtOffice14, $districtOffice15]);
 	}
 }
